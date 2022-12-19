@@ -1,10 +1,18 @@
 package ru.rivc.pojo;
 
+import java.time.LocalDate;
+
 public class Child extends Human {
 
-    String education;
+    Education education;
 
-    public Child(int id, String name) {
-        super(id, name);
+    public Child(int id, String name, LocalDate birthday) {
+        super(id, name, birthday);
+    }
+
+    public Child(int id, String name, LocalDate birthday, Nationality nationality, Education education) {
+        super(id, name, birthday);
+        this.nationality = nationality;
+        this.education = education;
     }
 }

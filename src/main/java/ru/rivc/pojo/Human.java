@@ -17,9 +17,10 @@ public abstract class Human {
     //Boilerplate code
 
 
-    public Human(int id, String name) {
+    public Human(int id, String name, LocalDate birthday) {
         this.id = id;
         this.name = name;
+        this.birthday = birthday;
     }
 
     public int getId() {

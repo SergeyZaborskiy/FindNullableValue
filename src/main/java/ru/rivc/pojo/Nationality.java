@@ -1,5 +1,5 @@
 package ru.rivc.pojo;
 
 public enum Nationality {
-   RU, EU, US
+   NOT_SPECIFIED, RU, EU, US
 }

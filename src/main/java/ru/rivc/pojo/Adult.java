@@ -1,10 +1,19 @@
 package ru.rivc.pojo;
 
-public class Adult extends Human{
+import java.time.LocalDate;
 
-    String job;
+public class Adult extends Human {
 
-    public Adult(int id, String name) {
-        super(id, name);
+    Qualification qualification;
+
+    public Adult(int id, String name, LocalDate birthday) {
+        super(id, name, birthday);
     }
+
+    public Adult(int id, String name, LocalDate birthday, Nationality nationality, Qualification qualification) {
+        super(id, name, birthday);
+        this.nationality = nationality;
+        this.qualification = qualification;
+    }
+
 }
