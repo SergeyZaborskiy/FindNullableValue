@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class HumanEmbeddedDictionary {
-    List<? super Human> humans = new ArrayList<>();
+    private final List<? super Human> humans = new ArrayList<>();
 
     public HumanEmbeddedDictionary() {
         humans.add(new Adult(1, "Ivan", LocalDate.of(1990, 2, 19), Nationality.RU, Qualification.MANAGER));
@@ -20,14 +20,13 @@ public class HumanEmbeddedDictionary {
         humans.add(new Adult(7, "Sergey", LocalDate.of(1991, 2, 19)));
         humans.add(new Adult(8, "Ivan", LocalDate.of(1993, 2, 19)));
         humans.add(new Child(9, null, LocalDate.of(2016, 2, 19), Nationality.US, Education.ELEMENTARY));
-        humans.add(new Adult(10, "Tatyana", LocalDate.of(1991, 2, 19)));
+        humans.add(new Adult(10, "Svetlana", LocalDate.of(1991, 2, 19)));
         humans.add(new Adult(11, "Svetlana", LocalDate.of(1990, 2, 19), Nationality.EU, Qualification.ENGINEER));
 
     }
 
-    public List<? super Human> findAll() {
+    public List<? super Human> getHumans() {
         return humans;
     }
 
-    //TODO findById(int id)
 }
