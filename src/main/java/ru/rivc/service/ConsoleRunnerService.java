@@ -2,12 +2,7 @@ package ru.rivc.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.rivc.data.entity.HumanEntity;
-import ru.rivc.data.repository.HumanEntityRepository;
-import ru.rivc.pojo.Qualification;
 
-import java.time.LocalDate;
-import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -19,14 +14,14 @@ public class ConsoleRunnerService {
 
     private final LotteryService lotteryService;
 
-    private final HumanEntityRepository humanEntityRepository;
+    private final HumanEntityService humanEntityService;
     Scanner scanner = new Scanner(System.in);
 
     @Autowired
-    public ConsoleRunnerService(HumanListService humanListService, LotteryService lotteryService, HumanEntityRepository humanEntityRepository) {
+    public ConsoleRunnerService(HumanListService humanListService, LotteryService lotteryService, HumanEntityService humanEntityService) {
         this.humanListService = humanListService;
         this.lotteryService = lotteryService;
-        this.humanEntityRepository = humanEntityRepository;
+        this.humanEntityService = humanEntityService;
     }
 
     public void run() {
@@ -63,7 +58,12 @@ public class ConsoleRunnerService {
                 }
                 case 4 -> {
                     System.out.println("Searching");
-                    System.out.println(getUsersBySearchQuery());
+                    try {
+                        System.out.println(humanEntityService.getUsersBySearchQuery());
+                    } catch (Exception e) {
+                        System.out.println("Users not found in database");
+                    }
+
 
                 }
                 case 0 -> {
@@ -85,14 +85,5 @@ public class ConsoleRunnerService {
         } catch (Exception e) {
             return BAD_INPUT_TYPE;
         }
-    }
-
-    private List<HumanEntity> getUsersBySearchQuery() {
-
-        return humanEntityRepository.findAllByBirthdayBetweenAndQualification(
-                LocalDate.of(1990, 1, 1),
-                LocalDate.of(1992, 1, 1),
-                Qualification.ENGINEER);
-
     }
 }
