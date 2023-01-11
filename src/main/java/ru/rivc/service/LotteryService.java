@@ -84,6 +84,8 @@ LotteryService {
             System.out.println("Lottery is complete");
 
             System.out.println("Winner is - " + winner.getName() + " with ID " + winner.getId());
+
+            applicantsList.clear();
         }
     }
 }
