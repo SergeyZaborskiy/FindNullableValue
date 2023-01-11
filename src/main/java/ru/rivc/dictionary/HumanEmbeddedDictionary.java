@@ -1,12 +1,13 @@
 package ru.rivc.dictionary;
 
+import org.springframework.stereotype.Component;
 import ru.rivc.pojo.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+@Component("dictionary")
 public class HumanEmbeddedDictionary {
     private final List<? super Human> humans = new ArrayList<>();
 

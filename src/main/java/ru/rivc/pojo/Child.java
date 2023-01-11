@@ -15,4 +15,15 @@ public class Child extends Human {
         this.nationality = nationality;
         this.education = education;
     }
+
+    @Override
+    public String toString() {
+        return "Child human with " +
+                "education=" + education +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", nationality=" + nationality +
+                '}';
+    }
 }

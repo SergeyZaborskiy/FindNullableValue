@@ -16,4 +16,14 @@ public class Adult extends Human {
         this.qualification = qualification;
     }
 
+    @Override
+    public String toString() {
+        return "Adult human with " +
+                "qualification=" + qualification +
+                ", id=" + id +
+                ", name='" + name + '\'' +
+                ", birthday=" + birthday +
+                ", nationality=" + nationality +
+                '}';
+    }
 }
