@@ -2,7 +2,12 @@ package ru.rivc.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.rivc.data.entity.HumanEntity;
+import ru.rivc.data.repository.HumanEntityRepository;
+import ru.rivc.pojo.Qualification;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -13,12 +18,15 @@ public class ConsoleRunnerService {
     private final HumanListService humanListService;
 
     private final LotteryService lotteryService;
+
+    private final HumanEntityRepository humanEntityRepository;
     Scanner scanner = new Scanner(System.in);
 
     @Autowired
-    public ConsoleRunnerService(HumanListService humanListService, LotteryService lotteryService) {
+    public ConsoleRunnerService(HumanListService humanListService, LotteryService lotteryService, HumanEntityRepository humanEntityRepository) {
         this.humanListService = humanListService;
         this.lotteryService = lotteryService;
+        this.humanEntityRepository = humanEntityRepository;
     }
 
     public void run() {
@@ -53,6 +61,11 @@ public class ConsoleRunnerService {
                     System.out.println("Starting lottery");
                     lotteryService.runLottery(HUMAN_TO_PARTICIPATE_AT_LOTTERY);
                 }
+                case 4 -> {
+                    System.out.println("Searching");
+                    System.out.println(getUsersBySearchQuery());
+
+                }
                 case 0 -> {
                     System.out.println("Shutdown our program");
                     return;
@@ -72,5 +85,14 @@ public class ConsoleRunnerService {
         } catch (Exception e) {
             return BAD_INPUT_TYPE;
         }
+    }
+
+    private List<HumanEntity> getUsersBySearchQuery() {
+
+        return humanEntityRepository.findAllByBirthdayBetweenAndQualification(
+                LocalDate.of(1990, 1, 1),
+                LocalDate.of(1992, 1, 1),
+                Qualification.ENGINEER);
+
     }
 }
