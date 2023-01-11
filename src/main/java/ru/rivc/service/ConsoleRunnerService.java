@@ -41,22 +41,26 @@ public class ConsoleRunnerService {
 
             switch (userInput) {
                 case 1 -> {
+                    //TODO
                     System.out.println("Insert user id");
                     try {
-                        System.out.println(humanListService.findById(checkUserInput()).orElseThrow());
+                        System.out.println();
                     } catch (NoSuchElementException e) {
                         System.out.println("User not found");
                     }
                 }
                 case 2 -> {
+                    //TODO
                     System.out.println("Grouping adult humans");
-                    System.out.println(humanListService.groupByName());
+                    System.out.println();
                 }
                 case 3 -> {
+                    //TODO
                     System.out.println("Starting lottery");
                     lotteryService.runLottery(HUMAN_TO_PARTICIPATE_AT_LOTTERY);
                 }
                 case 4 -> {
+                    //TODO
                     System.out.println("Searching");
                     try {
                         System.out.println(humanEntityService.getUsersBySearchQuery());

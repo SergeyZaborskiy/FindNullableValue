@@ -20,7 +20,6 @@ LotteryService {
 
     CyclicBarrier cyclicBarrier;
 
-    boolean isActive = true;
 
     @Autowired
     public LotteryService(HumanListService humanListService) {
@@ -30,22 +29,9 @@ LotteryService {
     public void runLottery(int numberOfApplicant) {
 
 
-        //TODO stuff like in example below
-
-
-        cyclicBarrier = new CyclicBarrier(numberOfApplicant, new CheckWinner());
-
-        while (isActive) {
-
-            Thread worker = new Thread(new ApplicantFinder());
-            worker.start();
-
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException ie) {
-                Thread.currentThread().interrupt();
-            }
-        }
+        //TODO 
+        
+        
     }
 
 
@@ -55,7 +41,7 @@ LotteryService {
         @Override
         public void run() {
 
-            Human applicant = humanListService.getRandomHumanForLottery();
+            Human applicant = null; //TODO = humanListService.getRandomHumanForLottery();
 
             applicantsList.add(applicant);
 

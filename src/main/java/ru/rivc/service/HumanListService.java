@@ -3,11 +3,7 @@ package ru.rivc.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.rivc.dictionary.HumanEmbeddedDictionary;
-import ru.rivc.pojo.Adult;
-import ru.rivc.pojo.Human;
 
-import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class HumanListService {
@@ -18,31 +14,12 @@ public class HumanListService {
         this.dictionary = dictionary;
     }
 
-    //TODO findById() as example below
+    //TODO findById
 
-    public Optional<? super Human> findById(int id) {
-        return dictionary.getHumans().stream()
-                .filter(human -> human instanceof Human)
-                .filter(human -> ((Human) human).getId() == id)
-                .findAny();
-    }
 
-    //TODO groupByName() as example below
+    //TODO groupByName
 
-    public Map<String, List<Adult>> groupByName() {
-        return  dictionary.getHumans().stream()
-                .filter(human -> human instanceof Adult)
-                .map(human -> (Adult)human)
-                .filter(adult -> Objects.nonNull(adult.getName()))
-                .collect(Collectors.groupingBy(Adult::getName));
-    }
 
-    //TODO getRandomHumanForLottery() as example below
-
-    public Human getRandomHumanForLottery() {
-        Random random = new Random();
-        return (Human) dictionary.getHumans().get(random.nextInt(dictionary.getHumans().size()));
-    }
-
+    //TODO getRandomHumanForLottery()
 
 }
